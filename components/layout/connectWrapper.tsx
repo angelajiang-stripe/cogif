@@ -6,7 +6,7 @@ const ConnectWrapper = (props: PropsWithChildren) => {
     const [hasError, setHasError] = useState(false)
 
     const fetchClientSecret = async () => {
-        const response = await fetch('/api/account_session');
+        const response = await fetch('/api/stripe/account_session');
         const {client_secret: clientSecret} = await response.json();
         return clientSecret;
     }
@@ -14,7 +14,7 @@ const ConnectWrapper = (props: PropsWithChildren) => {
     useEffect(()=>{
         (async () => {
             // Fetch the AccountSession client secret
-            const response = await fetch('/api/account_session');
+            const response = await fetch('/api/stripe/account_session');
             if (!response.ok) {
               // Handle errors on the client side here
               const {error} = await response.json();
@@ -55,11 +55,7 @@ const ConnectWrapper = (props: PropsWithChildren) => {
             <Script src="https://b.stripecdn.com/connect-js/v0.1/connect.js"/>
             <div className="wrapper">
               <div className="container">
-                {hasError ? 
-                    <DisplayError />
-                :
-                  props.children
-                }
+                {hasError ? <DisplayError /> : props.children}
               </div>
             </div>
             <style jsx>{`

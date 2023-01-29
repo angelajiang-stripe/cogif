@@ -1,4 +1,3 @@
-import Head from "next/head";
 import { PropsWithChildren } from "react";
 import Link from "next/link";
 
@@ -9,9 +8,6 @@ type LayoutProps = {
 const Layout = (props:PropsWithChildren<LayoutProps>) => {
     return (
         <div>
-            <Head>
-                <title>{props.title} | CoGif</title>
-            </Head>
             <Header />
             <div className="main">
                 {props.children}
@@ -35,10 +31,16 @@ const Header = () => {
                     <Link href="/browse">Browse GifShops</Link>
                 </div>
                 <div className="linkContainer">
-                    <Link href="/payments">My GifShop</Link>
+                    <Link href="/store">My GifShop</Link>
+                </div>
+                <div className="linkContainer">
+                    <Link href="/payments">Payments</Link>
                 </div>
                 <div className="linkContainer">
                     <Link href="/payments/payouts">Payouts</Link>
+                </div>
+                <div className="linkContainer">
+                    <Link href="/payments/onboarding">Account</Link>
                 </div>
             </div>
 
