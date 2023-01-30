@@ -42,14 +42,19 @@ const RetrieveStores = () => {
     }
 
     return (
-        <div className="text-center">
-            <div className="pd-bottom-3">
-            <h2>My Stores</h2>
-            <Link href="/sell/store/create">
-                <button className="btn-secondary">Create New Store</button>
-            </Link>
+        <div className="container">
+            <div className="pd-bottom-3 flex">
+                <div className="col1">
+                    <h2>My Stores</h2>
+                    <p className="secondary-text">A store represents a distinct business with its own P&L and products. You may have multiple stores.</p>
+                </div>
+                <div className="col2 flex">
+                    <Link href="/sell/store/create">
+                        <button className="btn-secondary">Create New Store</button>
+                    </Link>
+                </div>
             </div>
-            <div className="flex-center flex-wrap">
+            <div className="flex flex-wrap">
                 {stores.map(s => {return(
                     <div key={s.id} className='card storeCard clickable'>
                         <div className="content">
@@ -66,6 +71,9 @@ const RetrieveStores = () => {
                 )})}
             </div>
             <style jsx>{`
+                .container {margin: 0 auto; width: 60%}
+                .col1 {width: 70%;}
+                .col2 {width: 30%; align-items: center; justify-content: flex-end;}
                 .storeCard {width: 25%; margin: 16px;}    
                 .content {padding: 16px 32px; text-align: center;}
             `}</style>

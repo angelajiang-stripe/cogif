@@ -6,7 +6,7 @@ import colors from "@/styles/colors.module.scss"
 import { Textmark } from "@/components/layout/logos";
 
 export default function HomePage () {
-  const gf = new GiphyFetch(process.env.NEXT_PUBLIC_GIPHY_KEY)
+  const gf = new GiphyFetch(process.env.NEXT_PUBLIC_GIPHY_KEY as string)
   const fetchGifs = (offset: number) => gf.trending({ offset, limit: 10 })
   
 
@@ -22,13 +22,13 @@ export default function HomePage () {
           <p>The leading solution for multi-party <span>fun</span> flows</p>
           <div className="pd-top-1 flex-center">
             <div className="pd-right-1">
-              <Link href="/payments/onboarding">
-                <button className="btn-primary">Make "money"</button>
+              <Link href="/auth">
+                <button className="btn-primary">Create an Account</button>
               </Link>
             </div>
             <div>
-              <Link href="/browse">
-                <button className="btn-secondary">Spend "money"</button>
+              <Link href="/shop">
+                <button className="btn-secondary">Shop Gifs</button>
               </Link>
             </div>
           </div>

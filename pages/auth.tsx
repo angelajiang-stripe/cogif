@@ -10,7 +10,7 @@ export default function AuthPage() {
   const router = useRouter()
 
   if(session){
-    router.push('/')
+    router.push('/sell')
   }
 
   return (
