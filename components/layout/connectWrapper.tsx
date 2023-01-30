@@ -1,5 +1,6 @@
 import Script from "next/script"
 import React, { PropsWithChildren, useEffect, useState } from "react"
+import colors from '@/styles/colors.module.scss'
 
 const ConnectWrapper = (props: PropsWithChildren) => {
 
@@ -35,7 +36,7 @@ const ConnectWrapper = (props: PropsWithChildren) => {
                       },
                       appearance: {
                         colors: {
-                          primary: '#2488c6',
+                          primary: colors.primary,
                         },
                       },
                       uiConfig: {

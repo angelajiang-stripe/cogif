@@ -2,25 +2,57 @@ import Layout from "@/components/layout/layout"
 import Link from "next/link";
 import { Grid } from '@giphy/react-components'
 import { GiphyFetch } from '@giphy/js-fetch-api'
+import Image from "next/image";
+import colors from "@/styles/colors.module.scss"
+import { Textmark } from "@/components/layout/logos";
 
 
 export default function HomePage () {
   const gf = new GiphyFetch(process.env.NEXT_PUBLIC_GIPHY_KEY)
   const fetchGifs = (offset: number) => gf.trending({ offset, limit: 10 })
+  
 
   return (
     <div>
       <Layout>
-        <h1>CoGif</h1>
-        <p>Spend money on your co-workers' funniest gifs. Mandatory fun.</p>
-        
-        <Link href="/payments/onboarding">
-          Sign up to sell
-        </Link>
+        <div className="heroText">
+          <Textmark size="120px"/>
+        </div>
 
-        <Grid width={800} columns={3} fetchGifs={fetchGifs} />
+        <div className="heroSubText">
+          <h1>Buy and sell gifs with your co-workers</h1>
+          <p>The leading solution for multi-party <span>fun</span> flows</p>
+          <div className="pd-top-1 flex-center">
+            <div className="pd-right-1">
+              <Link href="/payments/onboarding">
+                <button className="btn-primary">Make "money"</button>
+              </Link>
+            </div>
+            <div>
+              <Link href="/browse">
+                <button className="btn-secondary">Spend "money"</button>
+              </Link>
+            </div>
+          </div>
+        </div>
+
+        <div className="flex-center">
+          <Grid width={900} columns={3} fetchGifs={fetchGifs} />
+        </div>
         
       </Layout>
+
+      <style jsx>{`
+        .heroText {display: flex; justify-content: center; padding-top: 60px;}
+        .heroSubText {text-align: center; padding-bottom: 80px;}
+        .heroSubText p {font-size: 20px;}
+        .heroSubText span {animation: color-change 2s infinite; font-weight: 800;}
+        @keyframes color-change {
+          0% { color: ${colors.primary} }
+          50% { color: ${colors.secondary} }
+          100% { color: ${colors.primary} }
+        }
+      `}</style>
     </div>
   )
 }

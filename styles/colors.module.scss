@@ -1,0 +1,15 @@
+//color vars
+$primary: #36C9C6;
+$primary-dark: #1eb3b1;
+
+$secondary: #ED6A5A;
+$secondary-dark: #e04e3b;
+
+//export colors to react
+:export {
+    primary: $primary;
+    primary_dark: $primary-dark;
+    secondary: $secondary;
+    secondary_dark: $secondary-dark;
+}
+

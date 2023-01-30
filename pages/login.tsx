@@ -2,6 +2,7 @@ import { Auth, ThemeSupa } from '@supabase/auth-ui-react'
 import { useSession, useSupabaseClient } from '@supabase/auth-helpers-react'
 import Layout from '@/components/layout/layout'
 import Account from '@/components/account'
+import colors from "@/styles/colors.module.scss"
 
 export default function LoginPage() {
   const session = useSession()
@@ -18,8 +19,8 @@ export default function LoginPage() {
               variables: {
                 default: {
                   colors: {
-                    brand: '#20b2aa',
-                    brandAccent: '#1a8e88',
+                    brand: colors.primary,
+                    brandAccent: colors.primary_dark,
                   },
                 },
               },
