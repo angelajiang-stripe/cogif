@@ -1,6 +1,6 @@
 import Layout from "@/components/layout/layout"
-import "@/components/layout/connectWrapper"
-import ConnectWrapper from "@/components/layout/connectWrapper"
+import "@/components/wrappers/connectWrapper"
+import ConnectWrapper from "@/components/wrappers/connectWrapper"
 
 export default function PaymentsPage(){
     return(

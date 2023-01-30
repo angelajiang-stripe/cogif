@@ -5,9 +5,8 @@ const stripe = require('stripe')(process.env.STRIPE_SK);
 export default async function handler(req:NextApiRequest, res: NextApiResponse) {
 
   if(req.method=='POST'){
-    const body = JSON.parse(req.body)
-
     try{
+        const body = JSON.parse(req.body)
         const product = await stripe.products.create({
             name: body.name,
             description: body.description,

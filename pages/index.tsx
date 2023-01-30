@@ -2,10 +2,8 @@ import Layout from "@/components/layout/layout"
 import Link from "next/link";
 import { Grid } from '@giphy/react-components'
 import { GiphyFetch } from '@giphy/js-fetch-api'
-import Image from "next/image";
 import colors from "@/styles/colors.module.scss"
 import { Textmark } from "@/components/layout/logos";
-
 
 export default function HomePage () {
   const gf = new GiphyFetch(process.env.NEXT_PUBLIC_GIPHY_KEY)

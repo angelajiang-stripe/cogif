@@ -1,17 +1,22 @@
 import { Auth, ThemeSupa } from '@supabase/auth-ui-react'
 import { useSession, useSupabaseClient } from '@supabase/auth-helpers-react'
 import Layout from '@/components/layout/layout'
-import Account from '@/components/account'
 import colors from "@/styles/colors.module.scss"
+import { useRouter } from 'next/router';
 
-export default function LoginPage() {
+export default function AuthPage() {
   const session = useSession()
   const supabase = useSupabaseClient()
+  const router = useRouter()
+
+  if(session){
+    router.push('/')
+  }
 
   return (
     <Layout>
-      <div>
-        {!session ? (
+      <div className='container'>
+          <h2>Login to continue</h2>
           <Auth 
             supabaseClient={supabase} 
             appearance={{ 
@@ -25,12 +30,12 @@ export default function LoginPage() {
                 },
               },
             }}
-            providers={['google']} 
+            //providers={['google']} 
           />
-        ) : (
-          <Account session={session}/>
-        )}
       </div>
+      <style jsx>{`
+          .container {width: 40%; margin: 0 auto;}
+      `}</style>
     </Layout>
   )
 }

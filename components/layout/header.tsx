@@ -1,11 +1,14 @@
 import Link from "next/link";
-import { Textmark, Logo } from "./logos";
+import { Textmark } from "./logos";
 import colors from '@/styles/colors.module.scss'
 import { useEffect, useState } from "react";
+import { useSupabaseClient, useUser } from '@supabase/auth-helpers-react'
 
 const Header = () => {
 
     const [scroll, setScroll] = useState(false)
+    const user = useUser()
+    const supabase = useSupabaseClient()
     
     useEffect(()=>{
         window.addEventListener('scroll', () => {
@@ -13,28 +16,42 @@ const Header = () => {
         })
     }, [])
 
+    function handleLogout(){
+        supabase.auth.signOut()
+    }
+
     return (
         <div className={scroll ? "header border" : "header"}>
             <div className="content">
-                <Textmark withLogo={true} />
-                <div className="container">
+                <Textmark withLogo={true} />    
+                <div className="flex">
+                    {user ? 
+                        <div className="linkContainer">
+                            <span className="pill">{user?.email}</span>
+                        </div>
+                    :
+                        null
+                    }
                     <div className="linkContainer">
-                        <Link href="/">Home</Link>
+                        <Link href="/shop">Shop Gifs</Link>
                     </div>
+                    
+                    {user ? 
+                            <>
+                                <div className="linkContainer">
+                                    <Link href="/sell">Sell Gifs</Link>
+                                </div>
+                                <div className="linkContainer">
+                                    <a onClick={handleLogout}>Logout</a>
+                                </div>
+                            </>
+                        :
+                            <div className="linkContainer">
+                                <Link href="/auth">Login</Link>
+                            </div>
+                    }
                     <div className="linkContainer">
-                        <Link href="/browse">Browse GifShops</Link>
-                    </div>
-                    <div className="linkContainer">
-                        <Link href="/store">My GifShop</Link>
-                    </div>
-                    <div className="linkContainer">
-                        <Link href="/payments">Payments</Link>
-                    </div>
-                    <div className="linkContainer">
-                        <Link href="/payments/payouts">Payouts</Link>
-                    </div>
-                    <div className="linkContainer">
-                        <Link href="/login">Account</Link>
+                        
                     </div>
                 </div>
             </div>
@@ -54,8 +71,9 @@ const Header = () => {
                     padding: 16px 32px; 
                     background-color: white;
                 }
-                .container {display: flex;}
+                .textmarkBlock {display: block;}
                 .linkContainer {padding: 8px 16px;}
+                .pill {border-radius: 10px; font-size: small; background-color: ${colors.primary}; padding: 6px 10px; font-weight: 800;}
             `}</style>
         </div>        
     )

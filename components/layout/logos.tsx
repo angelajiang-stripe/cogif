@@ -9,10 +9,14 @@ type Textmark = {
 
 export const Textmark = (props:Textmark) => {
     return (
-        <div className="titleContainer">
-          {props.withLogo ? <Logo /> : null}
-          <h1 className="title">CoGif</h1>
-          <style jsx>{`
+        <div>
+            <Link href="/">
+                <div className="titleContainer">
+                    {props.withLogo ? <Logo /> : null}
+                    <h1 className="title">CoGif</h1>
+                </div>
+            </Link>
+            <style jsx>{`
                 .title {
                     font-size: ${props.size || '40px'}; 
                     margin: 0; 
@@ -23,7 +27,7 @@ export const Textmark = (props:Textmark) => {
                     color: transparent;
                 }
                 .titleContainer {display: flex; align-items: baseline;}
-            `}</style>
+             `}</style>
         </div>
     )
 }
@@ -31,20 +35,17 @@ export const Textmark = (props:Textmark) => {
 export const Logo = () => {
     return (
         <div className="circle">
-            <Link href='/'>
-                <Image 
-                    src={'/cat.png'}
-                    width={30}
-                    height={30}
-                    alt="cat logo"
-                />
-            </Link>
+            <Image 
+                src={'/cat.png'}
+                width={30}
+                height={30}
+                alt="cat logo"
+            />
             <style jsx>{`
                 .circle {
                     border-radius: 50px; 
                     background-color: ${colors.primary};
                     padding: 6px 8px; 
-                    cursor: pointer;
                     box-shadow: 0 0 50px #ccc;
                 }    
             `}</style>

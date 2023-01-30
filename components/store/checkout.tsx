@@ -1,9 +1,8 @@
-import Layout from "@/components/layout/layout";
 import Link from 'next/link'
 import { useEffect } from "react";
 
-export default function StorePage() {
-    
+const Checkout = () => {
+
     useEffect(() => {
         // Check to see if this is a redirect back from Checkout
         const query = new URLSearchParams(window.location.search);
@@ -17,15 +16,17 @@ export default function StorePage() {
     }, []);
 
     return (
-        <Layout>
+        <div>
             <h1>My GifStore</h1>    
-            <p>This is my giftstore</p>
-            <p>Here are all my gifs for sale</p>
-            <Link href="/store/new_product">Create a product</Link>
+                <p>This is my giftstore</p>
+                <p>Here are all my gifs for sale</p>
 
-            <form action="/api/stripe/checkout" method='POST'>
-                <button type="submit">Checkout</button>
-            </form>
-        </Layout>
+                <form action="/api/stripe/checkout" method='POST'>
+                    <button type="submit">Checkout</button>
+                </form>
+
+        </div>
     )
 }
+
+export default Checkout

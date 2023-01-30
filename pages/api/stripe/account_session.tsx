@@ -13,9 +13,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             account: 'acct_1MVMXbGhwaBYsqxI',
         });
 
-    res.json({
-        client_secret: accountSession.client_secret,
-    });
+        res.json({
+            client_secret: accountSession.client_secret,
+        });
     } catch (error: any) {
         console.error('An error occurred when calling the Stripe API to create an account session', error);
         res.status(500);

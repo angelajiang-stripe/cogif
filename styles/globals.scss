@@ -13,7 +13,7 @@ body {
 }
 
 a {color: black; text-decoration: none; font-weight: 600;}
-a:hover {color: colors.$primary-dark;}
+a:hover {color: colors.$primary-dark; cursor: pointer;}
 
 //classes
 .btn-primary {border-radius: 5px; color: black; background-color: colors.$primary; border: none; padding: 12px 16px; font-weight: 800;}
@@ -26,7 +26,9 @@ a:hover {color: colors.$primary-dark;}
 .secondary-color {color: colors.$secondary}
 .secondary-text {color: grey;}
 
-//utilties -- display
+.card {border-radius: 10px; box-shadow: 0 3px 10px rgb(0 0 0 / 0.2); background-color: white; border-top: 8px solid colors.$primary}
+
+//utilties
 .text-center {text-align: center;}
 .text-left {text-align: left;}
 
@@ -34,6 +36,7 @@ a:hover {color: colors.$primary-dark;}
 .flex-around {display: flex; justify-content: space-around;}
 .flex-between {display: flex; justify-content: space-between;}
 .flex-center {display: flex; justify-content: center;}
+.flex-wrap {flex-wrap: wrap;}
 
 .pd-top-1 {padding-top: $increment;}
 .pd-top-2 {padding-top: $increment*2;}

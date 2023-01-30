@@ -9,7 +9,7 @@ const Layout = (props:PropsWithChildren) => {
                 {props.children}
             </div>
             <style jsx>{`
-                .main {padding: 16px 32px;}    
+                .main {padding: 40px 32px 16px;}    
             `}</style>
         </div>
     )

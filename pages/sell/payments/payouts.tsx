@@ -1,5 +1,5 @@
 import Layout from "@/components/layout/layout";
-import ConnectWrapper from "@/components/layout/connectWrapper";
+import ConnectWrapper from "@/components/wrappers/connectWrapper";
 
 
 export default function PayoutsPage() {
