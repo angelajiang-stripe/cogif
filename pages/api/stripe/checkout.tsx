@@ -11,6 +11,9 @@ export default async function handler(req:NextApiRequest, res:NextApiResponse) {
               {price: 'price_1MVW8AGhwaBYsqxISIXkd7LZ', quantity: 1},
             ],
             mode: 'payment',
+            payment_intent_data: {
+              application_fee_amount: 123,
+            },
           }, {stripeAccount: 'acct_1MVMXbGhwaBYsqxI'});
         
           //redirect user to session url

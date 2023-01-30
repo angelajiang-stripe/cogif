@@ -1,11 +1,7 @@
 import { PropsWithChildren } from "react";
 import Link from "next/link";
 
-type LayoutProps = {
-    title: string,
-}
-
-const Layout = (props:PropsWithChildren<LayoutProps>) => {
+const Layout = (props:PropsWithChildren) => {
     return (
         <div>
             <Header />
@@ -40,7 +36,7 @@ const Header = () => {
                     <Link href="/payments/payouts">Payouts</Link>
                 </div>
                 <div className="linkContainer">
-                    <Link href="/payments/onboarding">Account</Link>
+                    <Link href="/login">Account</Link>
                 </div>
             </div>
 

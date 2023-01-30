@@ -17,7 +17,7 @@ export default function StorePage() {
     }, []);
 
     return (
-        <Layout title="My GifStore">
+        <Layout>
             <h1>My GifStore</h1>    
             <p>This is my giftstore</p>
             <p>Here are all my gifs for sale</p>

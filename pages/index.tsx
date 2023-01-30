@@ -10,7 +10,7 @@ export default function HomePage () {
 
   return (
     <div>
-      <Layout title="Home">
+      <Layout>
         <h1>CoGif</h1>
         <p>Spend money on your co-workers' funniest gifs. Mandatory fun.</p>
         

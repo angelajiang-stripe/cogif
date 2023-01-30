@@ -29,7 +29,7 @@ export default function NewProductPage(){
 
     return (
         <div>
-            <Layout title="Create New Product">
+            <Layout>
                 <form onSubmit={handleSubmit}>
                     <div>
                         <label>Name: </label>
