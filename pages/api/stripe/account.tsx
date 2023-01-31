@@ -3,6 +3,8 @@ import { NextApiRequest, NextApiResponse } from "next";
 const stripe = require('stripe')(process.env.STRIPE_SK);
 
 export default async function handler(req:NextApiRequest, res:NextApiResponse) {
+    
+    //create a connect account
     if(req.method == 'POST'){
         try {
             const body = JSON.parse(req.body)
@@ -26,8 +28,20 @@ export default async function handler(req:NextApiRequest, res:NextApiResponse) {
             res.status(500);
             res.send({error: error.message});
         }
-    } else {
-        res.status(405).end('Method not allowed')
+    } 
+
+    //retrieve connect account
+    if(req.method=='GET'){
+        try {
+            const account = await stripe.accounts.retrieve(
+                req.query.account
+              );
+            res.json(account)
+        } catch (error:any) {
+            console.error('An error occurred when calling the Stripe API to create an account session', error);
+            res.status(500)
+            res.send({error: error.message})
+        }
     }
     
 }

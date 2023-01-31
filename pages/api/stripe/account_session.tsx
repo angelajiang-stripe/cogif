@@ -10,7 +10,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     
     try {
         const accountSession = await stripe.accountSessions.create({
-            account: 'acct_1MVMXbGhwaBYsqxI',
+            account: req.query.account,
         });
 
         res.json({

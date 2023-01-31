@@ -6,7 +6,7 @@ const CreateStore = () => {
     const user = useUser()
 
     const [company, setCompany] = useState('')
-    const [handle, setHandle] = useState('')
+    const [description, setDescription] = useState('')
 
     const [loading, setLoading] = useState(false)
     const [message, setMessage] = useState('')
@@ -16,13 +16,13 @@ const CreateStore = () => {
         setLoading(true)
 
         //get connect account id
-        const account_id = await getAccountId(company, user?.email)
+        const account_id = await createStripeAccount(company, user?.email)
        
         try {
             const store = {
                 user_id: user?.id,
                 name: company,
-                handle: handle,
+                description: description,
                 stripe_account_id: account_id,
             }
 
@@ -38,9 +38,9 @@ const CreateStore = () => {
         }
     }
 
-    async function getAccountId(company:string, email?:string){
-         //get connect account id
-         const response = await fetch('/api/stripe/create_account', {
+    async function createStripeAccount(company:string, email?:string){
+         //create connect account id
+         const response = await fetch('/api/stripe/account', {
             method: 'POST',
             body: JSON.stringify({
                 email: email,
@@ -48,26 +48,31 @@ const CreateStore = () => {
             })
          })
          const account = await response.json()
-         console.log(account)
          return account.id
     }
 
     return (
-        <div>
+        <div className="container">
             <h2>Create a Store</h2>
-            <p>Create a store to sell your gif wares. Each store is a separate business entity.</p>
             <form onSubmit={handleSubmit}>
-                <div>
-                    <label>company name</label>
-                    <input type="text" value={company} onChange={e=>setCompany(e.target.value)}/>
+                <div className="inputBox">
+                    <label>Company Name</label>
+                    <input type="text" value={company} onChange={e=>setCompany(e.target.value)} placeholder="gifstore" required/>
                 </div>
-                <div>
-                    <label>handle</label>
-                    <input type="text" value={handle} onChange={e => setHandle(e.target.value)}/>
+                <div className="inputBox">
+                    <label>Description</label>
+                    <input type="text" value={description} onChange={e=>setDescription(e.target.value)} placeholder="certified fresh gifs" required/>
                 </div>
-                <button type="submit">{loading ? 'Processing...' : 'Create Store'}</button>
-                <p className="secondary-text">{message}</p>
+                <div className="pd-top-2">
+                    <button type="submit" className="btn-primary">{loading ? 'Processing...' : 'Create Store'}</button>
+                    <p className="secondary-text">{message}</p>
+                </div>
             </form>
+            <style jsx>{`
+                .container {margin: 0 auto; width: 60%;}    
+                .inputBox {display: flex; justify-content: space-between; width: 40%; margin: 16px 0; align-items: center;}
+                .inputBox input {width: 60%;}
+            `}</style>
         </div>
     )
 }

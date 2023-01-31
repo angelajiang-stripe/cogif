@@ -26,13 +26,12 @@
     "next": "13.1.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-tabs": "^6.0.0",
     "stripe": "10.4.0-beta.1",
     "swr": "^2.0.3",
     "typescript": "4.9.4"
   },
   "devDependencies": {
-    "@lexical/react": "^0.7.6",
-    "lexical": "^0.7.6",
     "sass": "^1.57.1"
   }
 }

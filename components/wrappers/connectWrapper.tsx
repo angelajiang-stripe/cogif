@@ -2,12 +2,16 @@ import Script from "next/script"
 import React, { PropsWithChildren, useEffect, useState } from "react"
 import colors from '@/styles/colors.module.scss'
 
-const ConnectWrapper = (props: PropsWithChildren) => {
+type Props = {
+  accountId: string
+}
+
+const ConnectWrapper = (props: PropsWithChildren<Props>) => {
 
     const [hasError, setHasError] = useState(false)
 
     const fetchClientSecret = async () => {
-        const response = await fetch('/api/stripe/account_session');
+        const response = await fetch(`/api/stripe/account_session?account=${props.accountId}`);
         const {client_secret: clientSecret} = await response.json();
         return clientSecret;
     }
@@ -15,7 +19,7 @@ const ConnectWrapper = (props: PropsWithChildren) => {
     useEffect(()=>{
         (async () => {
             // Fetch the AccountSession client secret
-            const response = await fetch('/api/stripe/account_session');
+            const response = await fetch(`/api/stripe/account_session?account=${props.accountId}`);
             if (!response.ok) {
               // Handle errors on the client side here
               const {error} = await response.json();
@@ -54,25 +58,12 @@ const ConnectWrapper = (props: PropsWithChildren) => {
     return (
         <div>
             <Script src="https://b.stripecdn.com/connect-js/v0.1/connect.js"/>
-            <div className="wrapper">
-              <div className="container">
-                {hasError ? <DisplayError /> : props.children}
-              </div>
-            </div>
-            <style jsx>{`
-                .wrapper {display: flex; justify-content: center;}
-                .container {width: 80%;}  
-            `}</style>
+            {hasError ? 
+              <p>Something went wrong.</p>
+            : 
+              props.children}
         </div>
     )
 }
-
-const DisplayError = () => {
-    return (
-        <div>
-            <h1>ERROR</h1>
-        </div>
-    )
-} 
 
 export default ConnectWrapper

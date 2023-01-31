@@ -1,44 +1,31 @@
-import { useEffect, useState } from "react"
-import { useSupabaseClient, useUser } from "@supabase/auth-helpers-react"
-import Avatar from "boring-avatars";
+import { useUser } from "@supabase/auth-helpers-react"
 import Link from "next/link";
+import useSWR from 'swr'
+import { StoreAvatar } from "./avatar";
 
 const RetrieveStores = () => {
 
-    type Store = Array<{
+    type Stores = Array<{
         id: string,
         name: string,
-        handle: string
+        description: string
     }>
 
     const user = useUser()
-    const supabase = useSupabaseClient()
 
-    const [stores, setStores] = useState<Store>([])
-    const [loading, setLoading] = useState(false)
+    const fetcher = (url:URL) => fetch(url).then(res => res.json());
+    const {data:stores, error, isLoading}:{data: Stores, error: any, isLoading: boolean} = useSWR(`/api/supabase/stores?id=${user?.id}`, fetcher)
 
-    useEffect(()=>{
-        getStores(user?.id)
-    }, [])
+    if(!stores || isLoading){
+        return null
+    }
 
-    async function getStores(id?:string) {
-        setLoading(true)
-
-        try {
-            let {data, error, status}  = await supabase.from('stores').select(`id, name, handle`).eq('user_id', id)
-
-            if (error && status !== 406) {
-                throw error
-            }
-
-            if(data){
-                setStores(data)
-            }
-        } catch(error) {
-            console.error(error)
-        } finally {
-            setLoading(false)
-        }
+    if(error){
+        return(
+            <div>
+                <p>Error loading data</p>
+            </div>
+        )
     }
 
     return (
@@ -49,7 +36,7 @@ const RetrieveStores = () => {
                     <p className="secondary-text">A store represents a distinct business with its own P&L and products. You may have multiple stores.</p>
                 </div>
                 <div className="col2 flex">
-                    <Link href="/sell/store/create">
+                    <Link href="/manage/create">
                         <button className="btn-secondary">Create New Store</button>
                     </Link>
                 </div>
@@ -57,16 +44,13 @@ const RetrieveStores = () => {
             <div className="flex flex-wrap">
                 {stores.map(s => {return(
                     <div key={s.id} className='card storeCard clickable'>
-                        <div className="content">
-                            <Avatar
-                                size={70}
-                                name={s.handle}
-                                variant="beam"
-                                colors={["#92A1C6", "#146A7C", "#F0AB3D", "#C271B4", "#C20D90"]}
-                            />
-                            <h3>{s.name}</h3>
-                            <p>{s.handle}</p>
-                        </div>
+                        <Link href={`/manage/store/${s.id}`}>
+                            <div className="content">
+                                <StoreAvatar name={s.name}/>
+                                <h3>{s.name}</h3>
+                                <p>{s.description}</p>
+                            </div>
+                        </Link>
                     </div>
                 )})}
             </div>

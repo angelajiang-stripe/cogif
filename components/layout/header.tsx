@@ -39,7 +39,7 @@ const Header = () => {
                     {user ? 
                             <>
                                 <div className="linkContainer">
-                                    <Link href="/sell">Sell Gifs</Link>
+                                    <Link href="/manage">Sell Gifs</Link>
                                 </div>
                                 <div className="linkContainer">
                                     <a onClick={handleLogout}>Logout</a>
