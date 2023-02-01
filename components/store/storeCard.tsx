@@ -1,12 +1,7 @@
 import Link from "next/link"
 import { StoreAvatar } from "./avatar"
 import colors from '@/styles/colors.module.scss'
-
-export type Store = {
-    id: string,
-    name: string,
-    description: string
-}
+import { Store } from "@/types/types"
 
 export type Props = {
     store: Store

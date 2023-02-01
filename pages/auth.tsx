@@ -10,7 +10,7 @@ export default function AuthPage() {
   const router = useRouter()
 
   if(session){
-    router.push('/sell')
+    router.push('/manage')
   }
 
   return (
@@ -30,7 +30,6 @@ export default function AuthPage() {
                 },
               },
             }}
-            //providers={['google']} 
           />
       </div>
       <style jsx>{`

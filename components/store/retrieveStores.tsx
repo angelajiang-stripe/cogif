@@ -1,12 +1,12 @@
 import { useUser } from "@supabase/auth-helpers-react"
 import Link from "next/link";
 import useSWR from 'swr'
-import { StoreCard, Store } from "./storeCard";
+import { StoreCard } from "./storeCard";
+import { Stores } from "@/types/types";
+
 
 const RetrieveStores = () => {
-
-    type Stores = Array<Store>
-
+    
     const user = useUser()
 
     const fetcher = (url:URL) => fetch(url).then(res => res.json());
