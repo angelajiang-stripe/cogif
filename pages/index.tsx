@@ -35,7 +35,7 @@ export default function HomePage () {
         </div>
 
         <div className="flex-center">
-          <Grid width={900} columns={3} fetchGifs={fetchGifs} />
+          <Grid width={900} columns={3} fetchGifs={fetchGifs} noLink={true} />
         </div>
         
       </Layout>

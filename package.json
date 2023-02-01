@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@giphy/js-fetch-api": "^4.7.1",
+    "@giphy/js-types": "^4.4.0",
     "@giphy/react-components": "^6.5.2",
     "@next/font": "13.1.1",
     "@stripe/stripe-js": "^1.46.0",
@@ -26,6 +27,7 @@
     "next": "13.1.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-feather": "^2.0.10",
     "react-tabs": "^6.0.0",
     "stripe": "10.4.0-beta.1",
     "swr": "^2.0.3",

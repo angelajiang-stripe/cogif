@@ -1,15 +1,11 @@
 import { useUser } from "@supabase/auth-helpers-react"
 import Link from "next/link";
 import useSWR from 'swr'
-import { StoreAvatar } from "./avatar";
+import { StoreCard, Store } from "./storeCard";
 
 const RetrieveStores = () => {
 
-    type Stores = Array<{
-        id: string,
-        name: string,
-        description: string
-    }>
+    type Stores = Array<Store>
 
     const user = useUser()
 
@@ -43,23 +39,13 @@ const RetrieveStores = () => {
             </div>
             <div className="flex flex-wrap">
                 {stores.map(s => {return(
-                    <div key={s.id} className='card storeCard clickable'>
-                        <Link href={`/manage/store/${s.id}`}>
-                            <div className="content">
-                                <StoreAvatar name={s.name}/>
-                                <h3>{s.name}</h3>
-                                <p>{s.description}</p>
-                            </div>
-                        </Link>
-                    </div>
+                    <StoreCard store={s} key={s.id}/>
                 )})}
             </div>
             <style jsx>{`
                 .container {margin: 0 auto; width: 60%}
                 .col1 {width: 70%;}
                 .col2 {width: 30%; align-items: center; justify-content: flex-end;}
-                .storeCard {width: 25%; margin: 16px;}    
-                .content {padding: 16px 32px; text-align: center;}
             `}</style>
 
         </div>

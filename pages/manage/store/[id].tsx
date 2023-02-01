@@ -1,11 +1,12 @@
 import Layout from '@/components/layout/layout'
-import { User, createServerSupabaseClient } from '@supabase/auth-helpers-nextjs'
+import { createServerSupabaseClient } from '@supabase/auth-helpers-nextjs'
 import { GetServerSidePropsContext } from 'next'
 import Onboarding from '@/components/payments/onboarding'
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import {Transactions, Payouts} from '@/components/payments/dashboard';
 import { StoreAvatar } from '@/components/store/avatar';
 import Link from 'next/link';
+import CreateProduct from '@/components/products/createProduct';
 
 type Stores = Array<{
     id: number,
@@ -16,6 +17,7 @@ type Stores = Array<{
 
 export default function Page({data}:{data: Stores}){
     const store = data[0]
+
     return(
         <Layout>
             <div className='container'>
@@ -41,7 +43,8 @@ export default function Page({data}:{data: Stores}){
                 </TabList>
 
                 <TabPanel>
-                  <h2>Any content 1</h2>
+                  <Link href="/manage/store/product">Create a Product
+                  </Link>
                 </TabPanel>
                 <TabPanel>
                   <Transactions accountId={store.stripe_account_id}/>
@@ -53,7 +56,7 @@ export default function Page({data}:{data: Stores}){
             </div>
 
             <style jsx>{`
-              .container {width: 80%; margin: 0 auto;}  
+              .container {width: 80%; margin: 0 auto; }  
               .tabContainer {width: 80%; margin 0 auto;}
               .col1 {width: 70%;}
               .col2 {width: 30%;}
