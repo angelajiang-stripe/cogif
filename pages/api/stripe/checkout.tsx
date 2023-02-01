@@ -4,7 +4,7 @@ const stripe = require('stripe')(process.env.STRIPE_SK);
 
 export default async function handler(req:NextApiRequest, res:NextApiResponse) {
     try {
-        const priceData = parseInt(req.query.price as string)
+        const body = JSON.parse(req.body)
         
         const session = await stripe.checkout.sessions.create({
             success_url: `${process.env.NEXT_PUBLIC_HOST}/shop?success=true`,
@@ -14,22 +14,22 @@ export default async function handler(req:NextApiRequest, res:NextApiResponse) {
                 price_data: {
                   currency: 'usd',
                   product_data: {
-                    name: req.query.name,
-                    images: [req.query.image]
+                    name: body.name,
+                    images: [body.image]
                   },
-                  unit_amount: req.query.price
+                  unit_amount: body.price
                 },
                 quantity: 1
               },
             ],
             mode: 'payment',
             payment_intent_data: {
-              application_fee_amount: priceData*0.05,
+              application_fee_amount: body.price*0.05,
             },
-          }, {stripeAccount: req.query.account_id});
+          }, {stripeAccount: body.account_id});
         
-          //redirect user to session url
-          res.redirect(303, session.url);
+          //send checkout url
+          res.json({url: session.url})
     } catch(error:any){
         console.error('An error occurred when calling the Stripe API to create an account session', error);
         res.status(500);

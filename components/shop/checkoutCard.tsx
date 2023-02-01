@@ -1,22 +1,50 @@
-import Link from 'next/link'
-import { useEffect } from "react";
 import { Product } from '@/types/types';
 import Image from 'next/image';
 import colors from "@/styles/colors.module.scss"
+import { loadStripe } from '@stripe/stripe-js';
+import { useRouter } from 'next/router';
+import { SyntheticEvent } from 'react';
+
 
 type Props = {
     product: Product
 }
 
+// Make sure to call `loadStripe` outside of a component’s render to avoid
+// recreating the `Stripe` object on every render
+const stripePromise = loadStripe(
+    process.env.NEXT_PUBLIC_STRIPE_PK as string
+  );
+
 const CheckoutCard = (props:Props) => {
 
-    const accountStr = `account_id=${props.product.stores?.stripe_account_id}`        
-    const productStr = `name=${props.product.name}&image=${props.product.image}&price=${props.product.price}`
+    const router = useRouter()
+
+    const checkoutObj = {
+        account_id: props.product.stores?.stripe_account_id,
+        name: props.product.name,
+        image: props.product.image,
+        price: props.product.price
+    }
+
+    async function handleCheckout(e:SyntheticEvent){
+        e.preventDefault()
+        const res = await fetch('/api/stripe/checkout', {
+            method: "POST",
+            body: JSON.stringify(checkoutObj)
+        })
+        const data = await res.json()
+        const url = data.url
+        console.log(data)
+        if(data.url){
+            router.push(url)
+        }
+    }
 
     return (
         <div className='gifcard'>
             
-                <form action={`/api/stripe/checkout?${accountStr}&${productStr}`} method='POST'>
+                <form onSubmit={handleCheckout}>
                     <div className='content'>
                         <h3>{props.product.name}</h3>
                         <p className='secondary-text'>${props.product.price/100} | sold by {props.product.stores!.name}</p>
