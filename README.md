@@ -6,7 +6,6 @@ This is a full-stack Next.js app that uses API routes to handle server-side requ
 **Services**
 - Stripe for payments
 - Giphy for Gifs
-- Lexical for Editor
 - Vercel for deployment
 
 ## Development
