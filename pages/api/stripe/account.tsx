@@ -12,7 +12,6 @@ export default async function handler(req:NextApiRequest, res:NextApiResponse) {
                 type: 'custom',
                 country: 'US',
                 email: body.email,
-                business_type: 'company',
                 company: {
                     name: body.company,
                 },
