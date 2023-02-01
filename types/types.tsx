@@ -17,4 +17,3 @@ export type Product = {
 }
 
 export type Products = Array<Product>
-

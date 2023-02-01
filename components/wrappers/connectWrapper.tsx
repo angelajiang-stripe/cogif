@@ -2,6 +2,13 @@ import Script from "next/script"
 import React, { PropsWithChildren, useEffect, useState } from "react"
 import colors from '@/styles/colors.module.scss'
 
+declare global {
+  interface Window {
+      StripeConnect:any;
+  }
+}
+
+
 type Props = {
   accountId: string
 }

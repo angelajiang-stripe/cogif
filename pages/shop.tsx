@@ -27,7 +27,7 @@ export default function BrowsePage ({data}:{data:Products}) {
             <div className="container">
                 <div className="text-center pd-bottom-1">
                     <h2>Shop gifs!</h2>
-                    <p>Buy gifs with <a className="link" href="https://stripe.com/docs/testing#cards" target="_blank">test-mode</a> money.</p>
+                    <p>Buy gifs with <a className="link" href="https://stripe.com/docs/testing#cards" target="_blank" rel="noreferrer">test-mode</a> money.</p>
                     <p><span className="message">{message}</span></p>
                 </div>
                
