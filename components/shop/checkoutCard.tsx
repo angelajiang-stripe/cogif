@@ -34,10 +34,9 @@ const CheckoutCard = (props:Props) => {
             body: JSON.stringify(checkoutObj)
         })
         const data = await res.json()
-        const url = data.url
         console.log(data)
-        if(data.url){
-            router.push(url)
+        if(data){
+            window.location.href = data.url;
         }
     }
 
