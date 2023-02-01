@@ -29,15 +29,20 @@ const CheckoutCard = (props:Props) => {
 
     async function handleCheckout(e:SyntheticEvent){
         e.preventDefault()
-        const res = await fetch('/api/stripe/checkout', {
-            method: "POST",
-            body: JSON.stringify(checkoutObj)
-        })
-        const data = await res.json()
-        console.log(data)
-        if(data){
-            window.location.href = data.url;
+        try{
+            const res = await fetch('/api/stripe/checkout', {
+                method: "POST",
+                body: JSON.stringify(checkoutObj)
+            })
+            const data = await res.json()
+            console.log(data)
+            if(data.url){
+                window.location.href = data.url;
+            }
+        } catch (err) {
+            console.error(err)
         }
+        
     }
 
     return (

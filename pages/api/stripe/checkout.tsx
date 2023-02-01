@@ -28,7 +28,7 @@ export default async function handler(req:NextApiRequest, res:NextApiResponse) {
               application_fee_amount: appFee,
             },
           }, {stripeAccount: body.account_id});
-        
+
           //send checkout url
           res.json({url: session.url})
     } catch(error:any){
