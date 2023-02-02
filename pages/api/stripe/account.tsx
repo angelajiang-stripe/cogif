@@ -15,6 +15,7 @@ export default async function handler(req:NextApiRequest, res:NextApiResponse) {
                 company: {
                     name: body.company,
                 },
+                business_type: "individual",
                 capabilities: {
                   card_payments: {requested: true},
                   transfers: {requested: true},

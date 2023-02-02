@@ -1,4 +1,3 @@
-import Layout from "@/components/layout/layout";
 import React from "react";
 import { useRouter } from "next/router";
 import useSWR from 'swr'

@@ -2,8 +2,8 @@ import { Product } from '@/types/types';
 import Image from 'next/image';
 import colors from "@/styles/colors.module.scss"
 import { loadStripe } from '@stripe/stripe-js';
-import { useRouter } from 'next/router';
 import { SyntheticEvent } from 'react';
+import { useState } from 'react';
 
 
 type Props = {
@@ -17,6 +17,8 @@ const stripePromise = loadStripe(
   );
 
 const CheckoutCard = (props:Props) => {
+    
+    const [loading, setLoading] = useState(false)
 
     const checkoutObj = {
         account_id: props.product.stores?.stripe_account_id,
@@ -27,6 +29,7 @@ const CheckoutCard = (props:Props) => {
 
     async function handleCheckout(e:SyntheticEvent){
         e.preventDefault()
+        setLoading(true)
         try{
             const res = await fetch('/api/stripe/checkout', {
                 method: "POST",
@@ -39,6 +42,8 @@ const CheckoutCard = (props:Props) => {
             }
         } catch (err) {
             console.error(err)
+        } finally {
+            setLoading(false)
         }
         
     }
@@ -52,19 +57,19 @@ const CheckoutCard = (props:Props) => {
                         <p className='secondary-text'>${props.product.price/100} | sold by {props.product.stores!.name}</p>
                         <Image 
                             src={props.product.image}
-                            height={300}
-                            width={300}
+                            height={200}
+                            width={200}
                             alt="gif"
                         />
                         
                         </div>
                         <div className='pd-top-1'>
-                            <button type="submit" className='checkout-btn'><b>Buy Now</b></button>
+                            <button type="submit" className='checkout-btn'><b>{loading ? 'Processing...' : 'Buy Now'}</b></button>
                         </div>
                 </form>
                 
             <style jsx>{`
-                .gifcard {width: 30%; border-radius: 10px; border: 1px solid lightgrey; margin: 16px;}
+                .gifcard {width: 20%; border-radius: 10px; border: 1px solid lightgrey; margin: 16px;}
                 .content {padding: 16px 24px; text-align: center;}
                 .checkout-btn {
                     width: 100%; 
