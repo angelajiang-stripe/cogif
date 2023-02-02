@@ -60,7 +60,7 @@ const ConnectWrapper = (props: PropsWithChildren<Props>) => {
             }
             
           })()
-    }, [])
+    }, [props.accountId, fetchClientSecret])
 
     return (
         <div>
