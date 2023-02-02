@@ -34,9 +34,10 @@ export default function Page({data}:{data: Stores}){
                   <h4>Store Checklist</h4>
                   <ul>
                     <li>Onboard your account to accept payments</li>
-                    <li>Create a product to sell</li>
-                    <li>Make sure someone buys your product</li>
+                    <li>Once enabled, create a product to sell on the marketplace</li>
+                    <li>Make sure someone buys your product (or buy it yourself!)</li>
                     <li>Review your transactions and payouts lists</li>
+                    <li>Try refunding a payment!</li>
                   </ul>
                 </div>
                 <div className='col2'>

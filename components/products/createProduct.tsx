@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Grid } from '@giphy/react-components'
 import { GiphyFetch } from '@giphy/js-fetch-api'
 import Image from "next/image";
@@ -40,6 +40,7 @@ export default function CreateProduct(){
             let {error} = await supabase.from('products').insert(product)
             if (error) throw error
             setMessage('Product created!')
+            router.push(`/manage/store/${store_id}`)
         } catch (err) {
             console.log(err);
             setMessage('Something went wrong.')

@@ -1,6 +1,7 @@
-import { SyntheticEvent, useState } from "react"
+import { SyntheticEvent, useEffect, useState } from "react"
 import { useSupabaseClient, useUser } from "@supabase/auth-helpers-react"
 import Link from "next/link"
+import { useRouter } from "next/router"
 
 const CreateStore = () => {
     const supabase = useSupabaseClient()
@@ -11,6 +12,8 @@ const CreateStore = () => {
 
     const [loading, setLoading] = useState(false)
     const [message, setMessage] = useState('')
+
+    const router = useRouter()
 
     async function handleSubmit(e:SyntheticEvent){
         e.preventDefault()
@@ -30,6 +33,7 @@ const CreateStore = () => {
             let {error} = await supabase.from('stores').insert(store)
             if (error) throw error
             setMessage('Store created!')
+            router.push('/manage')
         } catch(error){
             console.log(error)
             setMessage('Sorry, something went wrong.')

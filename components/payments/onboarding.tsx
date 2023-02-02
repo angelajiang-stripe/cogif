@@ -30,7 +30,7 @@ export default function Onboarding(props:Props) {
                 <div className="pd-bottom-1">
                     <h4>CoGif Payments 💳</h4>
                     <p className="secondary-text">CoGif takes a 5% transaction fee.</p>
-                    <p>{data?.charges_enabled ? '✅' : '⛔'} can accept payments</p>
+                    <p>{data?.charges_enabled ? '✅' : '⛔'} accept payments</p>
                 </div>
                 <button onClick={handleClick} className="btn-secondary">Enable Payments</button>
             </div>

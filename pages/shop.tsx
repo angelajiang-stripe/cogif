@@ -14,11 +14,7 @@ export default function BrowsePage ({data}:{data:Products}) {
         // Check to see if this is a redirect back from Checkout
         const query = new URLSearchParams(window.location.search);
         if (query.get('success')) {
-          setMessage('You successfully bought a gif!')
-        }
-    
-        if (query.get('canceled')) {
-          setMessage('Order canceled -- continue to shop around and checkout when you’re ready.')
+          setMessage('You successfully bought a gif! Check your store for transactions.')
         }
     }, []);
     
@@ -28,10 +24,10 @@ export default function BrowsePage ({data}:{data:Products}) {
                 <div className="text-center pd-bottom-1">
                     <h2>Shop gifs!</h2>
                     <p>Buy gifs with <a className="link" href="https://stripe.com/docs/testing#cards" target="_blank" rel="noreferrer">test-mode</a> money.</p>
-                    <p><span className="message">{message}</span></p>
+                    {message ? <p><span className="message">{message}</span></p> : null}
                 </div>
                
-                <div className="flex flex-wrap">
+                <div className="flex-center flex-wrap">
                     {data.map(product=>{return(
                         <CheckoutCard product={product} key={product.id}/>
                     )})}
@@ -40,7 +36,7 @@ export default function BrowsePage ({data}:{data:Products}) {
             </div>
             <style jsx>{`
                 .container {width: 100%; margin: 0 auto;}
-                .message {background-color: ${colors.secondary}}
+                .message {border-radius: 5px; padding: 4px; background-color: ${colors.primary};}
                 .link {text-decoration: underline;}
             `}</style>
         </Layout>
