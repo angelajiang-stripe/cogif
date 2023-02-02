@@ -4,11 +4,13 @@ import { Grid } from '@giphy/react-components'
 import { GiphyFetch } from '@giphy/js-fetch-api'
 import colors from "@/styles/colors.module.scss"
 import { Textmark } from "@/components/layout/logos";
+import { useSession } from "@supabase/auth-helpers-react";
 
 export default function HomePage () {
   const gf = new GiphyFetch(process.env.NEXT_PUBLIC_GIPHY_KEY as string)
   const fetchGifs = (offset: number) => gf.trending({ offset, limit: 10 })
-  
+
+  const session = useSession()
 
   return (
     <div>
@@ -22,14 +24,15 @@ export default function HomePage () {
           <p>The leading solution for multi-party <span>fun</span> flows</p>
           <div className="pd-top-1 flex-center">
             <div className="pd-right-1">
-              <Link href="/auth">
-                <button className="btn-primary">Create an Account</button>
-              </Link>
-            </div>
-            <div>
-              <Link href="/shop">
-                <button className="btn-secondary">Shop Gifs</button>
-              </Link>
+              {session ? 
+                <Link href="/p/manage">
+                  <button className="btn-primary">Sell Gifs</button>
+                </Link> 
+                :
+                <Link href="/auth">
+                  <button className="btn-primary">Create an Account</button>
+                </Link>
+              }
             </div>
           </div>
         </div>

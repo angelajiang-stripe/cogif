@@ -11,7 +11,7 @@ export function StoreCard (props:Props){
     return (
         <>
             <div className='card storeCard clickable'>
-                <Link href={`/manage/store/${props.store.id}`}>
+                <Link href={`/p/manage/store/${props.store.id}`}>
                     <div className="content">
                         <StoreAvatar name={props.store.name}/>
                         <h3>{props.store.name}</h3>

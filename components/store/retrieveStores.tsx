@@ -32,7 +32,7 @@ const RetrieveStores = () => {
                     <p className="secondary-text">A store represents a distinct business with its own P&L and products. You may have multiple stores.</p>
                 </div>
                 <div className="col2 flex">
-                    <Link href="/manage/create">
+                    <Link href="/p/manage/create">
                         <button className="btn-secondary">Create New Store</button>
                     </Link>
                 </div>

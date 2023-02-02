@@ -3,12 +3,15 @@ import { Textmark } from "./logos";
 import colors from '@/styles/colors.module.scss'
 import { useEffect, useState } from "react";
 import { useSupabaseClient, useUser } from '@supabase/auth-helpers-react'
+import { useRouter } from "next/router";
 
 const Header = () => {
 
     const [scroll, setScroll] = useState(false)
     const user = useUser()
     const supabase = useSupabaseClient()
+
+    const router = useRouter()
     
     useEffect(()=>{
         window.addEventListener('scroll', () => {
@@ -18,28 +21,24 @@ const Header = () => {
 
     function handleLogout(){
         supabase.auth.signOut()
+        router.push('/')
     }
 
     return (
         <div className={scroll ? "header border" : "header"}>
             <div className="content">
                 <Textmark withLogo={true} />    
-                <div className="flex">
-                    {user ? 
-                        <div className="linkContainer">
-                            <span className="pill">{user?.email}</span>
-                        </div>
-                    :
-                        null
-                    }
-                    <div className="linkContainer">
-                        <Link href="/shop">Shop Gifs</Link>
-                    </div>
-                    
+                <div className="flex">  
                     {user ? 
                             <>
                                 <div className="linkContainer">
-                                    <Link href="/manage">Sell Gifs</Link>
+                                    <span className="pill">{user?.email}</span>
+                                </div>
+                                <div className="linkContainer">
+                                    <Link href="/p/manage">Sell Gifs</Link>
+                                </div>
+                                <div className="linkContainer">
+                                    <Link href="/p/shop">Shop Gifs</Link>
                                 </div>
                                 <div className="linkContainer">
                                     <a onClick={handleLogout}>Logout</a>

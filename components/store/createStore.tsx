@@ -57,7 +57,7 @@ const CreateStore = () => {
 
     return (
         <div className="container">
-            <Link href="/manage">&larr; Return to my stores</Link>
+            <Link href="/p/manage">&larr; Return to my stores</Link>
             <h2>Create a Store</h2>
             <form onSubmit={handleSubmit}>
                 <div className="inputBox">

@@ -25,6 +25,7 @@ export async function middleware(req: NextRequest) {
   return NextResponse.redirect(redirectUrl)
 }
 
+//apply auth to protected routes
 export const config = {
-  matcher: '/manage/:path*',
+  matcher: '/p/:path*',
 }

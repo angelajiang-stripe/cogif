@@ -22,7 +22,7 @@ export default function Page({data}:{data: Stores}){
     return(
         <Layout>
             <div className='container'>
-              <Link href="/manage">&larr; Return to my stores</Link>
+              <Link href="/p/manage">&larr; Return to my stores</Link>
               <h2>Manage {store.name}</h2>
               <p className='secondary-text'>{store.description}</p>  
               
@@ -55,7 +55,7 @@ export default function Page({data}:{data: Stores}){
                 <TabPanel>
                 <div className='text-center pd-top-1'>
                   {connect_account?.charges_enabled ? 
-                      <Link href={`/manage/store/${id}/product`}>
+                      <Link href={`/p/manage/store/${id}/product`}>
                         <button className='btn-primary'>Create a Product</button>
                       </Link>
                   : 

@@ -6,8 +6,8 @@ export default async function handler(req:NextApiRequest, res: NextApiResponse) 
     try{
         const accountLink = await stripe.accountLinks.create({
             account: req.query.account,
-            refresh_url: `${process.env.NEXT_PUBLIC_HOST}/manage/store/${req.query.store}`,
-            return_url: `${process.env.NEXT_PUBLIC_HOST}/manage/store/${req.query.store}`,
+            refresh_url: `${process.env.NEXT_PUBLIC_HOST}/p/manage/store/${req.query.store}`,
+            return_url: `${process.env.NEXT_PUBLIC_HOST}/p/manage/store/${req.query.store}`,
             type: 'account_onboarding',
             collect: 'eventually_due',
         });

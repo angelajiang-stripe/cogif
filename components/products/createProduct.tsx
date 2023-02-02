@@ -62,7 +62,7 @@ export default function CreateProduct(){
     return (
         <div>
             <div className="container">
-                <Link href={`/manage/store/${store_id}`}>&larr; Return to store</Link>
+                <Link href={`/p/manage/store/${store_id}`}>&larr; Return to store</Link>
                 <h2>Create a Product</h2>
                 
                 <div className="inputBox">
