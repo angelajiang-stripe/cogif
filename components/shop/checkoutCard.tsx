@@ -18,8 +18,6 @@ const stripePromise = loadStripe(
 
 const CheckoutCard = (props:Props) => {
 
-    const router = useRouter()
-
     const checkoutObj = {
         account_id: props.product.stores?.stripe_account_id,
         name: props.product.name,
