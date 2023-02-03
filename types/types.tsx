@@ -17,3 +17,11 @@ export type Product = {
 }
 
 export type Products = Array<Product>
+
+export type Order = {
+  id: number,
+  created_at: string,
+  products: Product
+}
+
+export type Orders = Array<Order>

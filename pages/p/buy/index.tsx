@@ -2,7 +2,7 @@ import Layout from "@/components/layout/layout"
 import { createServerSupabaseClient } from '@supabase/auth-helpers-nextjs'
 import { GetServerSidePropsContext } from 'next'
 import { Products } from "@/types/types"
-import CheckoutCard from "@/components/shop/checkoutCard"
+import CheckoutCard from "@/components/buy/checkoutCard"
 import { useEffect, useState } from "react"
 import colors from "@/styles/colors.module.scss"
 
@@ -14,7 +14,7 @@ export default function BrowsePage ({data}:{data:Products}) {
         // Check to see if this is a redirect back from Checkout
         const query = new URLSearchParams(window.location.search);
         if (query.get('success')) {
-          setMessage('You successfully bought a gif! Check your store for transactions.')
+          setMessage('You successfully bought a gif! Transactions will show up for the seller.')
         }
     }, []);
     
@@ -22,7 +22,7 @@ export default function BrowsePage ({data}:{data:Products}) {
         <Layout>
             <div className="container">
                 <div className="text-center pd-bottom-1">
-                    <h2>Shop gifs!</h2>
+                    <h2>Buy gifs!</h2>
                     <p>Buy gifs with <a className="link" href="https://stripe.com/docs/testing#cards" target="_blank" rel="noreferrer">test-mode</a> money.</p>
                     {message ? <p><span className="message">{message}</span></p> : null}
                 </div>

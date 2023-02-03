@@ -1,28 +1,13 @@
-import { useUser } from "@supabase/auth-helpers-react"
 import Link from "next/link";
-import useSWR from 'swr'
 import { StoreCard } from "./storeCard";
 import { Stores } from "@/types/types";
 
+type Props = {
+    stores: Stores
+}
 
-const RetrieveStores = () => {
-    
-    const user = useUser()
 
-    const fetcher = (url:URL) => fetch(url).then(res => res.json());
-    const {data:stores, error, isLoading}:{data: Stores, error: any, isLoading: boolean} = useSWR(`/api/supabase/stores?id=${user?.id}`, fetcher)
-
-    if(!stores || isLoading){
-        return null
-    }
-
-    if(error){
-        return(
-            <div>
-                <p>Error loading data</p>
-            </div>
-        )
-    }
+const RetrieveStores = (props:Props) => {
 
     return (
         <div className="container">
@@ -38,7 +23,7 @@ const RetrieveStores = () => {
                 </div>
             </div>
             <div className="flex flex-wrap">
-                {stores.map(s => {return(
+                {props.stores.map(s => {return(
                     <StoreCard store={s} key={s.id}/>
                 )})}
             </div>

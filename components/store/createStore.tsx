@@ -33,7 +33,7 @@ const CreateStore = () => {
             let {error} = await supabase.from('stores').insert(store)
             if (error) throw error
             setMessage('Store created!')
-            router.push('/manage')
+            router.push('/p/manage')
         } catch(error){
             console.log(error)
             setMessage('Sorry, something went wrong.')

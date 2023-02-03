@@ -27,13 +27,13 @@
     "next": "13.1.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "react-feather": "^2.0.10",
     "react-tabs": "^6.0.0",
     "stripe": "10.4.0-beta.1",
     "swr": "^2.0.3",
     "typescript": "4.9.4"
   },
   "devDependencies": {
+    "micro": "^10.0.1",
     "sass": "^1.57.1"
   }
 }

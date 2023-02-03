@@ -38,7 +38,10 @@ const Header = () => {
                                     <Link href="/p/manage">Sell Gifs</Link>
                                 </div>
                                 <div className="linkContainer">
-                                    <Link href="/p/shop">Shop Gifs</Link>
+                                    <Link href="/p/buy">Buy Gifs</Link>
+                                </div>
+                                <div className="linkContainer">
+                                    <Link href="/p/buy/orders">My Gifs</Link>
                                 </div>
                                 <div className="linkContainer">
                                     <a onClick={handleLogout}>Logout</a>

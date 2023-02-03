@@ -5,7 +5,6 @@ import { loadStripe } from '@stripe/stripe-js';
 import { SyntheticEvent } from 'react';
 import { useState } from 'react';
 
-
 type Props = {
     product: Product
 }
@@ -21,6 +20,7 @@ const CheckoutCard = (props:Props) => {
     const [loading, setLoading] = useState(false)
 
     const checkoutObj = {
+        product_id: props.product.id,
         account_id: props.product.stores?.stripe_account_id,
         name: props.product.name,
         image: props.product.image,
@@ -54,7 +54,8 @@ const CheckoutCard = (props:Props) => {
                 <form onSubmit={handleCheckout}>
                     <div className='content'>
                         <h3>{props.product.name}</h3>
-                        <p className='secondary-text'>${props.product.price/100} | sold by {props.product.stores!.name}</p>
+                        <p className='secondary-text'>by {props.product.stores!.name}</p>
+                        <p className='primary-color'><b>${props.product.price/100}</b></p>
                         <Image 
                             src={props.product.image}
                             height={200}

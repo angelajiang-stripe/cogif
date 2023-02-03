@@ -8,8 +8,8 @@ export default async function handler(req:NextApiRequest, res:NextApiResponse) {
         const appFee = body.price * 0.05 //take an application fee
         
         const session = await stripe.checkout.sessions.create({
-            success_url: `${process.env.NEXT_PUBLIC_HOST}/p/shop?success=true`,
-            cancel_url: `${process.env.NEXT_PUBLIC_HOST}/p/shop?cancelled=true`,
+            success_url: `${process.env.NEXT_PUBLIC_HOST}/p/buy?success=true`,
+            cancel_url: `${process.env.NEXT_PUBLIC_HOST}/p/buy?cancelled=true`,
             line_items: [
               {
                 price_data: {
@@ -26,6 +26,9 @@ export default async function handler(req:NextApiRequest, res:NextApiResponse) {
             mode: 'payment',
             payment_intent_data: {
               application_fee_amount: appFee,
+            },
+            metadata: {
+              product_id: body.product_id
             },
           }, {stripeAccount: body.account_id});
 
