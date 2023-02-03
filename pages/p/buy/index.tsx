@@ -14,7 +14,7 @@ export default function BrowsePage ({data}:{data:Products}) {
         // Check to see if this is a redirect back from Checkout
         const query = new URLSearchParams(window.location.search);
         if (query.get('success')) {
-          setMessage('You successfully bought a gif! Transactions will show up for the seller.')
+          setMessage('You successfully bought a gif! ')
         }
     }, []);
     

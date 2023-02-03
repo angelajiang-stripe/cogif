@@ -33,14 +33,14 @@ export default function CreateProduct(){
                 user_id: user?.id,
                 store_id: store_id,
                 name: name,
-                price: price*100,
+                price: Math.round(price*100),
                 image: image,
             }
 
             let {error} = await supabase.from('products').insert(product)
             if (error) throw error
             setMessage('Product created!')
-            router.push(`/manage/store/${store_id}`)
+            router.push(`/p/manage/store/${store_id}`)
         } catch (err) {
             console.log(err);
             setMessage('Something went wrong.')

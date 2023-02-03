@@ -6,7 +6,7 @@ import { createServerSupabaseClient } from '@supabase/auth-helpers-nextjs'
 export default async function handler(req:NextApiRequest, res:NextApiResponse) {
     try {
         const body = JSON.parse(req.body)
-        const appFee = body.price * 0.05 //take an application fee
+        const appFee = Math.round(body.price*0.05)  //take an application fee
 
          // Create authenticated Supabase Client
         const supabase = createServerSupabaseClient({ req, res })

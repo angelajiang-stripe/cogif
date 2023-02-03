@@ -1,5 +1,6 @@
 import { Order } from '@/types/types';
 import Image from 'next/image';
+import { formatCurrency } from '../utils/utils';
 
 type Props = {
     order: Order,
@@ -15,7 +16,7 @@ const OrderCard = (props:Props) => {
             <div className='content'>
                 <h3>{props.order.products.name}</h3>
                 <p className='secondary-text'>by {props.order.stores.name}</p>
-                <p className='primary-color'><b>${props.order.products.price/100}</b></p>
+                <p className='primary-color'><b>${formatCurrency(props.order.products.price)}</b></p>
                 <p>Purchased {created_at}</p>
                 <Image 
                     src={props.order.products.image}

@@ -4,6 +4,7 @@ import colors from "@/styles/colors.module.scss"
 import { loadStripe } from '@stripe/stripe-js';
 import { SyntheticEvent } from 'react';
 import { useState } from 'react';
+import { formatCurrency } from '../utils/utils';
 
 type Props = {
     product: Product
@@ -56,7 +57,7 @@ const CheckoutCard = (props:Props) => {
                     <div className='content'>
                         <h3>{props.product.name}</h3>
                         <p className='secondary-text'>by {props.product.stores!.name}</p>
-                        <p className='primary-color'><b>${props.product.price/100}</b></p>
+                        <p className='primary-color'><b>${formatCurrency(props.product.price)}</b></p>
                         <Image 
                             src={props.product.image}
                             height={200}

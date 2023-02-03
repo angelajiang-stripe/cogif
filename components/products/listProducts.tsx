@@ -1,6 +1,7 @@
 
 import Image from "next/image";
 import { Products } from "@/types/types";
+import { formatCurrency } from "../utils/utils";
 
 type Props = {
     products: Products
@@ -14,7 +15,7 @@ export default function ListProducts (props:Props) {
                 <div key={p.id} className="gifcard">
                     <div className="content">
                         <h3>{p.name}</h3>
-                        <p>${p.price/100}</p>
+                        <p>${formatCurrency(p.price)}</p>
                         <Image src={p.image} height={150} width={150} alt="gif" />
                     </div>
                 </div>
