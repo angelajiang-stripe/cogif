@@ -20,7 +20,7 @@ const CreateStore = () => {
         setLoading(true)
 
         //get connect account id
-        const account_id = await createStripeAccount(company, user?.email)
+        const account_id = await createStripeAccount(user?.email)
        
         try {
             const store = {
@@ -42,13 +42,12 @@ const CreateStore = () => {
         }
     }
 
-    async function createStripeAccount(company:string, email?:string){
+    async function createStripeAccount(email?:string){
          //create connect account id
          const response = await fetch('/api/stripe/account', {
             method: 'POST',
             body: JSON.stringify({
                 email: email,
-                company: company
             })
          })
          const account = await response.json()
