@@ -1,6 +1,7 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { createServerSupabaseClient } from '@supabase/auth-helpers-nextjs'
 
+//not used. example of supabase query on api route
 async function handler(req: NextApiRequest, res: NextApiResponse) {
     
     // Create authenticated Supabase Client

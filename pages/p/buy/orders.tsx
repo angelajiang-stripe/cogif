@@ -4,7 +4,6 @@ import { GetServerSidePropsContext } from 'next'
 import { Orders } from "@/types/types"
 import OrderCard from "@/components/buy/orderCard"
 
-
 export default function Page({data}:{data:Orders}){
     return (
         <Layout>
@@ -14,7 +13,7 @@ export default function Page({data}:{data:Orders}){
                 <p>Purchased gifs will show up here.</p>
                 <div className="flex-center flex-wrap">
                     {data.map(order => {return(
-                        <OrderCard product={order.products} created_at={order.created_at} key={order.id} />
+                        <OrderCard order={order} key={order.id} />
                     )})}
                 </div>
             </div>
@@ -37,7 +36,8 @@ export const getServerSideProps = async (ctx: GetServerSidePropsContext) => {
     const user_id = session?.user.id
   
     // Run queries with RLS on the server
-    const { data, error } = await supabase.from('orders').select('id, created_at, products(id, name, description, image, price)').eq('user_id', user_id)
+    const { data, error } = await supabase.from('orders').select('id, created_at, products(id, name, image, price), stores(id, name)').eq('user_id', user_id)
+    console.error(error)
   
     return {
       props: {

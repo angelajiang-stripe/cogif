@@ -21,7 +21,8 @@ export type Products = Array<Product>
 export type Order = {
   id: number,
   created_at: string,
-  products: Product
+  products: Product,
+  stores: Store
 }
 
 export type Orders = Array<Order>

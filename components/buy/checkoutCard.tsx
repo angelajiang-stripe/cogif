@@ -22,6 +22,7 @@ const CheckoutCard = (props:Props) => {
     const checkoutObj = {
         product_id: props.product.id,
         account_id: props.product.stores?.stripe_account_id,
+        store_id: props.product.stores?.id,
         name: props.product.name,
         image: props.product.image,
         price: props.product.price

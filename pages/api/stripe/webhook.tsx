@@ -3,7 +3,9 @@ import { createServerSupabaseClient } from '@supabase/auth-helpers-nextjs'
 import { buffer } from "micro";
 
 const stripe = require('stripe')(process.env.STRIPE_SK);
-const endpointSecret = process.env.STRIPE_WEBHOOK_SECRET
+
+//note when using local forwarding, change to STRIPE_WEBHOOK_SECRET_LOCAL
+const endpointSecret = process.env.NODE_ENV=='production' ? process.env.STRIPE_WEBHOOK_SECRET_PROD : process.env.STRIPE_WEBHOOK_SECRET_DEV
 
 //get raw body
 export const config = {
@@ -26,20 +28,17 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     return;
   }
 
-  // Create authenticated Supabase Client
+  // Create Supabase Client
   const supabase = createServerSupabaseClient({ req, res })
-  const {
-    data: { session },
-  } = await supabase.auth.getSession()
-
-  const user_id = session?.user.id
 
   // Handle the event
   switch (event.type) {
     case 'checkout.session.completed':
       const checkoutSessionCompleted = event.data.object;
-      const {product_id} = checkoutSessionCompleted.metadata
-      const { error } = await supabase.from('orders').insert({ product_id: product_id, user_id: user_id })
+      const metadata = checkoutSessionCompleted.metadata
+
+      //RLS is public
+      const { error } = await supabase.from('orders').insert({ product_id: metadata.product_id, user_id: metadata.user_id, store_id: metadata.store_id })
       if(error){
         console.error(error)
       }
@@ -47,7 +46,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       break;
     // ... handle other event types
     default:
-      console.log(`Unhandled event type ${event.type}`);
+      //console.log(`Unhandled event type ${event.type}`);
   }
 
   // Return a 200 response to acknowledge receipt of the event

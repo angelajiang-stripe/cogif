@@ -98,7 +98,7 @@ export default function CreateProduct(){
                     </div>
                     <div className="inputBox">
                         <label>Price $</label>
-                        <input type="number" min="1" step="1" value={price} onChange={(e)=>setPrice(e.target.valueAsNumber)} required/>
+                        <input type="number" min="1" step="0.01" max="999999" value={price} onChange={(e)=>setPrice(e.target.valueAsNumber)} required/>
                     </div>
                     <div className="pd-top-2">
                         <button className="btn-primary" type="submit">{loading ? 'Processing...' : 'Create Product'}</button>

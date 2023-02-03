@@ -74,7 +74,7 @@ export default function Page({data}:{data: Stores}){
             </div>
 
             <style jsx>{`
-              .container {width: 80%; margin: 0 auto; }  
+              .container {width: 80%; margin: 0 auto; padding-bottom: 60px;}  
               .tabContainer {width: 80%; margin 0 auto;}
               .col1 {width: 70%;}
               .col2 {width: 30%;}
