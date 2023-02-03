@@ -1,0 +1,39 @@
+{
+  "name": "ua7-next",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@giphy/js-fetch-api": "^4.7.1",
+    "@giphy/js-types": "^4.4.0",
+    "@giphy/react-components": "^6.5.2",
+    "@next/font": "13.1.1",
+    "@stripe/stripe-js": "^1.46.0",
+    "@supabase/auth-helpers-nextjs": "^0.5.4",
+    "@supabase/auth-helpers-react": "^0.3.1",
+    "@supabase/auth-ui-react": "^0.2.6",
+    "@supabase/supabase-js": "^2.5.0",
+    "@types/node": "18.11.18",
+    "@types/react": "18.0.26",
+    "@types/react-dom": "18.0.10",
+    "boring-avatars": "^1.7.0",
+    "eslint": "8.31.0",
+    "eslint-config-next": "13.1.1",
+    "next": "13.1.1",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "react-tabs": "^6.0.0",
+    "stripe": "10.4.0-beta.1",
+    "swr": "^2.0.3",
+    "typescript": "4.9.4"
+  },
+  "devDependencies": {
+    "micro": "^10.0.1",
+    "sass": "^1.57.1"
+  }
+}
