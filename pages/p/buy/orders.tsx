@@ -19,6 +19,9 @@ export default function Page({data}:{data:Orders}){
             </div>
             <style jsx>{`
                 .container {margin: 0 auto; width: 80%;}    
+                @media screen and (max-width: 900px){
+                    .container {width: 100%;}
+                }
             `}</style>
         </Layout>
     )

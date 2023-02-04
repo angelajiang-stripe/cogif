@@ -5,10 +5,13 @@ import { GiphyFetch } from '@giphy/js-fetch-api'
 import colors from "@/styles/colors.module.scss"
 import { Textmark } from "@/components/layout/logos";
 import { useSession } from "@supabase/auth-helpers-react";
+import { useMediaQuery } from 'react-responsive'
 
 export default function HomePage () {
   const gf = new GiphyFetch(process.env.NEXT_PUBLIC_GIPHY_KEY as string)
   const fetchGifs = (offset: number) => gf.trending({ offset, limit: 10 })
+
+  const isMobile = useMediaQuery({ query: '(max-width: 900px)' })
 
   const session = useSession()
 
@@ -16,7 +19,7 @@ export default function HomePage () {
     <div>
       <Layout>
         <div className="heroText">
-          <Textmark size="120px"/>
+          <Textmark size="100px"/>
         </div>
 
         <div className="heroSubText">
@@ -38,7 +41,13 @@ export default function HomePage () {
         </div>
 
         <div className="flex-center">
-          <Grid width={900} columns={3} fetchGifs={fetchGifs} noLink={true} hideAttribution={true} />
+          <Grid 
+            width={isMobile ? 300 : 800} 
+            columns={3} 
+            fetchGifs={fetchGifs} 
+            noLink={true} 
+            hideAttribution={true} 
+          />
         </div>
         
       </Layout>

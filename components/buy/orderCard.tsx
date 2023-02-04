@@ -29,6 +29,9 @@ const OrderCard = (props:Props) => {
             <style jsx>{`
                 .gifcard {width: 20%; border-radius: 10px; border: 1px solid lightgrey; margin: 16px;}
                 .content {padding: 16px 24px; text-align: center;}
+                @media screen and (max-width: 900px){
+                    .gifcard {width: 100%;}
+                }
             `}</style>    
         </div>
     )

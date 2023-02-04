@@ -76,6 +76,12 @@ const CreateStore = () => {
                 .container {margin: 0 auto; width: 80%;}    
                 .inputBox {display: flex; justify-content: space-between; width: 60%; margin: 16px 0; align-items: center;}
                 .inputBox input {width: 60%;}
+
+                @media screen and (max-width: 900px){
+                    .container {width: 100%;}
+                    .inputBox {flex-wrap: wrap; width: 100%;}
+                    .inputBox input {width: 100%;}
+                }
             `}</style>
         </div>
     )

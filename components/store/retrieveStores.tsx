@@ -11,7 +11,7 @@ const RetrieveStores = (props:Props) => {
 
     return (
         <div className="container">
-            <div className="pd-bottom-3 flex">
+            <div className="content">
                 <div className="col1">
                     <h2>My Stores</h2>
                     <p className="secondary-text">A store represents a distinct business with its own P&L and products. You may have multiple stores.</p>
@@ -29,8 +29,14 @@ const RetrieveStores = (props:Props) => {
             </div>
             <style jsx>{`
                 .container {margin: 0 auto; width: 80%}
+                .content {padding-bottom: 40px; display: flex; flex-wrap: wrap;}
                 .col1 {width: 70%;}
                 .col2 {width: 30%; align-items: center; justify-content: flex-end;}
+                @media screen and (max-width: 900px){
+                    .container {width: 100%;}
+                    .col1 {width: 100%;}
+                    .col2 {width: 100%; justify-content: flex-start;} 
+                }
             `}</style>
 
         </div>

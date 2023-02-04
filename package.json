@@ -33,7 +33,7 @@
     "typescript": "4.9.4"
   },
   "devDependencies": {
-    "micro": "^10.0.1",
+    "react-responsive": "^9.0.2",
     "sass": "^1.57.1"
   }
 }

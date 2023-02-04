@@ -82,6 +82,9 @@ const CheckoutCard = (props:Props) => {
                     border-bottom-right-radius: 10px;
                     cursor: pointer;
                 }
+                @media screen and (max-width: 900px){
+                    .gifcard {width: 100%; margin: 16px 0;}
+                }
             `}</style>    
         </div>
     )

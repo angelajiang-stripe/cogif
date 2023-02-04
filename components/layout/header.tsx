@@ -4,10 +4,13 @@ import colors from '@/styles/colors.module.scss'
 import { useEffect, useState } from "react";
 import { useSupabaseClient, useUser } from '@supabase/auth-helpers-react'
 import { useRouter } from "next/router";
+import Image from "next/image";
 
 const Header = () => {
 
     const [scroll, setScroll] = useState(false)
+    const [menu, setMenu] = useState(false)
+
     const user = useUser()
     const supabase = useSupabaseClient()
 
@@ -24,11 +27,20 @@ const Header = () => {
         router.push('/')
     }
 
+    function handleMenu(){
+        setMenu(!menu)
+    }
+
     return (
         <div className={scroll ? "header border" : "header"}>
             <div className="content">
-                <Textmark withLogo={true} />    
-                <div className="flex">  
+                <div className="markBox">
+                    <Textmark withLogo={true} />    
+                    <div className="mobileMenu" onClick={handleMenu}>
+                        <Image src="/menu.png" height={32} width={32} alt="menu"/>
+                    </div>  
+                </div>
+                <div className="linksBox">
                     {user ? 
                             <>
                                 <div className="linkContainer">
@@ -52,17 +64,13 @@ const Header = () => {
                                 <Link href="/auth">Login</Link>
                             </div>
                     }
-                    <div className="linkContainer">
-                        
-                    </div>
                 </div>
             </div>
 
             <style jsx>{`
                 .header {
-                    position: sticky;
+                    position: ${menu ? 'fixed' : 'sticky'};
                     width: 100%; 
-                    align-items: center; 
                     z-index: 10; 
                     top: 0;
                 }
@@ -76,6 +84,17 @@ const Header = () => {
                 .textmarkBlock {display: block;}
                 .linkContainer {padding: 8px 16px;}
                 .pill {border-radius: 10px; font-size: small; background-color: ${colors.primary}; padding: 6px 10px; font-weight: 800;}
+                .linksBox {display: flex;}
+                .mobileMenu {display: none;}
+                .markBox {display: block;}
+                
+                @media screen and (max-width: 900px) {
+                    .content {display: block;}
+                    .mobileMenu {display: block; display: flex; align-items: center;}
+                    .markBox {display: flex; justify-content: space-between;}
+                    .linksBox {display: ${menu ? 'block' : 'none'}; padding-top: 16px;}
+                    .linkContainer {padding: 16px 0; text-align:right;}
+                }
             `}</style>
         </div>        
     )

@@ -23,6 +23,10 @@ export function StoreCard (props:Props){
             <style jsx>{`
                 .storeCard {width: 25%; margin: 16px; border-top: 8px solid ${colors.primary}}    
                 .content {padding: 16px 32px; text-align: center;}
+                @media screen and (max-width: 900px) {
+                    .storeCard {width: 100%;}
+                    .storeCard {margin: 16px 0;}
+                }
             `}</style>
         </>
     )

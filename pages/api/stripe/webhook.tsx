@@ -1,11 +1,19 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { createServerSupabaseClient } from '@supabase/auth-helpers-nextjs'
-import { buffer } from "micro";
+import type { Readable } from 'node:stream';
 
 const stripe = require('stripe')(process.env.STRIPE_SK);
 
-//note when using local forwarding, change to STRIPE_WEBHOOK_SECRET_LOCAL
+//note when using local, foward events using stripe CLI
 const endpointSecret = process.env.NODE_ENV=='production' ? process.env.STRIPE_WEBHOOK_SECRET_PROD : process.env.STRIPE_WEBHOOK_SECRET_DEV
+
+async function buffer(readable: Readable) {
+  const chunks = [];
+  for await (const chunk of readable) {
+    chunks.push(typeof chunk === 'string' ? Buffer.from(chunk) : chunk);
+  }
+  return Buffer.concat(chunks);
+}
 
 //get raw body
 export const config = {

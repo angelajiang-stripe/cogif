@@ -1,5 +1,3 @@
-import ConnectWrapper from "@/components/wrappers/connectWrapper";
-
 import * as React from 'react';
 declare global {
     namespace JSX {
@@ -12,37 +10,15 @@ declare global {
     }
 }
 
-type Props = {
-    accountId: string
-}
+export function Payouts() {
 
-export function Payouts(props:Props) {
-
-    return (
-        <div className="pd-top-1">
-            <div className="text-center pd-bottom-2">
-                <h3>Payouts</h3>
-            </div>
-            <div className="pd-right-2 pd-left-2">
-                <ConnectWrapper accountId={props.accountId}>
-                    <stripe-connect-payouts />
-                </ConnectWrapper>
-            </div>
-        </div>
+    return ( 
+        <stripe-connect-payouts />
     )
 }
 
-export function Transactions(props:Props){
+export function Transactions(){
     return(
-        <div className="pd-top-1">
-            <div className="text-center pd-bottom-2">
-                <h3>Transactions</h3>
-            </div>
-            <div className="pd-right-2 pd-left-2">
-                <ConnectWrapper accountId={props.accountId}>
-                    <stripe-connect-payments />
-                </ConnectWrapper>
-            </div>
-        </div>
+        <stripe-connect-payments /> 
     )
 }

@@ -47,7 +47,7 @@ const ConnectWrapper = (props: PropsWithChildren<Props>) => {
                       },
                       appearance: {
                         colors: {
-                          primary: colors.primary,
+                          primary: "#00008B",
                         },
                       },
                       uiConfig: {

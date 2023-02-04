@@ -112,6 +112,12 @@ export default function CreateProduct(){
                 .inputBox {display: flex; justify-content: space-between; width: 60%; margin: 16px 0; align-items: center;}
                 .inputBox input {width: 60%;}
                 .imageContainer {padding: 16px 32px;}
+
+                @media screen and (max-width: 900px){
+                    .container {width: 100%;}
+                    .inputBox {width: 100%; flex-wrap: wrap;}
+                    .inputBox input {width: 100%;}
+                }
             `}</style>
         </div>
     )

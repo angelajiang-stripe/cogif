@@ -23,6 +23,9 @@ export default function ListProducts (props:Props) {
             <style jsx>{`
                 .gifcard {width: 25%; border: 1px solid lightgrey; border-radius: 10px; margin: 16px;}
                 .content {padding: 4px 24px 16px; text-align: center;}
+                @media screen and (max-width: 900px){
+                    .gifcard {width: 100%; margin: 16px 0;}
+                }
             `}</style>
         </div>
     )

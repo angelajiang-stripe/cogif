@@ -10,6 +10,7 @@ import { useRouter } from 'next/router';
 import ListProducts from '@/components/products/listProducts';
 import { Stores } from '@/types/types';
 import useSWR from "swr"
+import ConnectWrapper from '@/components/wrappers/connectWrapper';
 
 export default function Page({data}:{data: Stores}){
     const store = data[0]
@@ -21,14 +22,15 @@ export default function Page({data}:{data: Stores}){
 
     return(
         <Layout>
+          <ConnectWrapper accountId={store.stripe_account_id}>
             <div className='container'>
               <Link href="/p/manage">&larr; Return to my stores</Link>
               <h2>Manage {store.name}</h2>
               <p className='secondary-text'>{store.description}</p>  
               
-              <div className='bar'></div>
+              <div className='bar'/>
               
-              <div className='pd-top-3 pd-bottom-2 flex'>
+              <div className='pd-top-3 pd-bottom-2 flex flex-wrap'>
                 <div className='col1'>
                 <StoreAvatar name={store.name} size={50}/>
                   <h4>Store Checklist</h4>
@@ -44,8 +46,8 @@ export default function Page({data}:{data: Stores}){
                   <Onboarding storeId={store.id} accountId={store.stripe_account_id} />
                 </div>
               </div>
-              
-              <Tabs forceRenderTabPanel={true}>
+
+              <Tabs>
                 <TabList>
                   <Tab>Products</Tab>
                   <Tab>Transactions</Tab>
@@ -65,21 +67,34 @@ export default function Page({data}:{data: Stores}){
                   <ListProducts products={store.products!}/>
                 </TabPanel>
                 <TabPanel>
-                  <Transactions accountId={store.stripe_account_id}/>
+                    <div className="dashBox">
+                        <Transactions />
+                    </div>
                 </TabPanel>
                 <TabPanel>
-                  <Payouts accountId={store.stripe_account_id}/>
+                    <div className="dashBox">
+                        <Payouts />
+                    </div>
                 </TabPanel>
               </Tabs>
+              
             </div>
+          </ConnectWrapper>
 
-            <style jsx>{`
-              .container {width: 80%; margin: 0 auto; padding-bottom: 60px;}  
-              .tabContainer {width: 80%; margin 0 auto;}
-              .col1 {width: 70%;}
-              .col2 {width: 30%;}
-              .bar {width:100%; height: 1px; background-color: lightgrey;}
-            `}</style>
+          <style jsx>{`
+            .container {width: 80%; margin: 0 auto; padding-bottom: 60px;}  
+            .tabContainer {width: 80%; margin 0 auto;}
+            .col1 {width: 70%;}
+            .col2 {width: 30%;}
+            .bar {width:100%; height: 1px; background-color: lightgrey;}
+            .dashBox {padding: 32px 0;}
+
+            @media screen and (max-width: 900px){
+              .container {width: 100%;}
+              .col1 {width: 100%;}
+              .col2 {width: 100%; padding-top: 16px;}
+            }
+          `}</style>
         </Layout>
     )
 }
