@@ -71,16 +71,32 @@ export default function CreateProduct(){
                 </div>
                 
                 {showGif ? 
-                    <Grid 
-                        width={800} 
-                        columns={3} 
-                        gutter={6} 
-                        fetchGifs={fetchGifs} 
-                        key={query} 
-                        noLink={true}
-                        hideAttribution={true}
-                        onGifClick={gif => handleSelection(gif.images.fixed_height.url)}
-                    />
+                    <div>
+                        <div className="desktop">
+                            <Grid 
+                                width={800} 
+                                columns={3} 
+                                gutter={6} 
+                                fetchGifs={fetchGifs} 
+                                key={query} 
+                                noLink={true}
+                                hideAttribution={true}
+                                onGifClick={gif => handleSelection(gif.images.fixed_height.url)}
+                            />
+                        </div>
+                        <div className="mobile">
+                            <Grid 
+                                width={300} 
+                                columns={2} 
+                                gutter={6} 
+                                fetchGifs={fetchGifs} 
+                                key={query} 
+                                noLink={true}
+                                hideAttribution={true}
+                                onGifClick={gif => handleSelection(gif.images.fixed_height.url)}
+                            />
+                        </div>
+                    </div>
                     : null
                 }
                 
@@ -111,12 +127,16 @@ export default function CreateProduct(){
                 .container {margin: 0 auto; width: 80%;}    
                 .inputBox {display: flex; justify-content: space-between; width: 60%; margin: 16px 0; align-items: center;}
                 .inputBox input {width: 60%;}
-                .imageContainer {padding: 16px 32px;}
+                .imageContainer {padding: 16px 0;}
+                .desktop {display: block;}
+                .mobile {display: none;}
 
                 @media screen and (max-width: 900px){
                     .container {width: 100%;}
                     .inputBox {width: 100%; flex-wrap: wrap;}
                     .inputBox input {width: 100%;}
+                    .desktop {display: none;}
+                    .mobile {display: block;}
                 }
             `}</style>
         </div>
