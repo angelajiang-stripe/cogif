@@ -5,13 +5,11 @@ import { GiphyFetch } from '@giphy/js-fetch-api'
 import colors from "@/styles/colors.module.scss"
 import { Textmark } from "@/components/layout/logos";
 import { useSession } from "@supabase/auth-helpers-react";
-import { useMediaQuery } from 'react-responsive'
 
 export default function HomePage () {
+
   const gf = new GiphyFetch(process.env.NEXT_PUBLIC_GIPHY_KEY as string)
   const fetchGifs = (offset: number) => gf.trending({ offset, limit: 10 })
-
-  const isMobile = useMediaQuery({ query: '(max-width: 900px)' })
 
   const session = useSession()
 
@@ -41,13 +39,12 @@ export default function HomePage () {
         </div>
 
         <div className="flex-center">
-          <Grid 
-            width={isMobile ? 300 : 800} 
-            columns={3} 
-            fetchGifs={fetchGifs} 
-            noLink={true} 
-            hideAttribution={true} 
-          />
+          <div className="desktop">
+            <Grid width={900} columns={3} fetchGifs={fetchGifs} noLink={true} hideAttribution={true} />
+          </div>
+          <div className="mobile">
+            <Grid width={300} columns={2} fetchGifs={fetchGifs} noLink={true} hideAttribution={true} />
+          </div>
         </div>
         
       </Layout>
@@ -57,10 +54,17 @@ export default function HomePage () {
         .heroSubText {text-align: center; padding-bottom: 80px;}
         .heroSubText p {font-size: 20px;}
         .heroSubText span {animation: color-change 2s infinite; font-weight: 800;}
+        .desktop {display: block;}
+        .mobile {display: none;}
+
         @keyframes color-change {
           0% { color: ${colors.primary} }
           50% { color: ${colors.secondary} }
           100% { color: ${colors.primary} }
+        }
+        @media screen and (max-width:900px){
+          .mobile {display: block;}
+          .desktop {display: none;}
         }
       `}</style>
     </div>
