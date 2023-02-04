@@ -65,21 +65,15 @@ const CheckoutCard = (props:Props) => {
                         />
                         
                         </div>
-                        <div className='pd-top-1'>
-                            <button type="submit" className='checkout-btn'><b>{loading ? 'Processing...' : 'Buy Now'}</b></button>
+                        <div className='pd-top-1 pd-bottom-2 flex-center'>
+                            <button type="submit" className='btn-primary checkoutBtn'><b>{loading ? 'Processing...' : 'Buy Now'}</b></button>
                         </div>
                 </form>
                 
             <style jsx>{`
-                .gifcard {width: 25%; border: 1px solid lightgrey; margin: 16px;}
+                .gifcard {width: 25%; border-radius: 10px; border: 1px solid lightgrey; margin: 16px;}
                 .content {padding: 16px 24px; text-align: center;}
-                .checkout-btn {
-                    width: 100%; 
-                    padding: 16px 0;  
-                    background-color: ${colors.primary}; 
-                    border: none;
-                    cursor: pointer;
-                }
+                .checkoutBtn {width: 50%;}
                 @media screen and (max-width: 900px){
                     .gifcard {width: 100%; margin: 16px 0;}
                 }
