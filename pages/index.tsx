@@ -3,7 +3,7 @@ import Link from "next/link";
 import { Grid } from '@giphy/react-components'
 import { GiphyFetch } from '@giphy/js-fetch-api'
 import colors from "@/styles/colors.module.scss"
-import { Textmark } from "@/components/layout/logos";
+import { TextMark } from "@/components/layout/logos";
 import { useSession } from "@supabase/auth-helpers-react";
 
 export default function HomePage () {
@@ -17,7 +17,7 @@ export default function HomePage () {
     <div>
       <Layout>
         <div className="heroText">
-          <Textmark size="100px"/>
+          <TextMark fontSize="100px" />
         </div>
 
         <div className="heroSubText">

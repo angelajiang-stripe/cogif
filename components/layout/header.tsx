@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Textmark } from "./logos";
+import { TextmarkLink, LogoLink } from "./logos";
 import colors from '@/styles/colors.module.scss'
 import { useEffect, useState } from "react";
 import { useSupabaseClient, useUser } from '@supabase/auth-helpers-react'
@@ -34,10 +34,15 @@ const Header = () => {
     return (
         <div className={scroll ? "header border" : "header"}>
             <div className="content">
-                <div className="markBox">
-                    <Textmark withLogo={true} />    
-                    <div className="mobileMenu" onClick={handleMenu}>
-                        <Image src="/menu.png" height={32} width={32} alt="menu"/>
+                <div>
+                    <div className="desktop">
+                        <TextmarkLink />    
+                    </div>
+                    <div className="mobile">
+                        <LogoLink />
+                        <div onClick={handleMenu}>
+                            <Image src="/menu.png" height={32} width={32} alt="menu"/>
+                        </div>
                     </div>  
                 </div>
                 <div className="linksBox">
@@ -81,17 +86,16 @@ const Header = () => {
                     padding: 16px 32px; 
                     background-color: white;
                 }
-                .textmarkBlock {display: block;}
                 .linkContainer {padding: 8px 16px;}
                 .pill {border-radius: 10px; font-size: small; background-color: ${colors.primary}; padding: 6px 10px; font-weight: 800;}
                 .linksBox {display: flex;}
-                .mobileMenu {display: none;}
-                .markBox {display: block;}
+                .desktop {display: block;}
+                .mobile {display: none;}
                 
                 @media screen and (max-width: 900px) {
                     .content {display: block;}
-                    .mobileMenu {display: block; display: flex; align-items: center;}
-                    .markBox {display: flex; justify-content: space-between;}
+                    .mobile {display: flex; align-items: center; justify-content: space-between;}
+                    .desktop {display: none;}
                     .linksBox {display: ${menu ? 'block' : 'none'}; padding-top: 16px;}
                     .linkContainer {padding: 16px 0; text-align:right;}
                 }
