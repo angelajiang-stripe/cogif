@@ -75,11 +75,14 @@ const CheckoutCard = (props:Props) => {
                 .content {padding: 16px 24px; text-align: center;}
                 .checkout-btn {
                     width: 100%; 
-                    padding: 16px 0; 
-                    border: none; 
+                    padding: 16px 0;  
                     background-color: ${colors.primary}; 
                     border-bottom-left-radius: 10px; 
                     border-bottom-right-radius: 10px;
+                    border-top: none;
+                    border-bottom: 1px solid lightgrey;
+                    border-left: 1px solid lightgrey;
+                    border-right: 1px solid lightgrey;
                     cursor: pointer;
                 }
                 @media screen and (max-width: 900px){
