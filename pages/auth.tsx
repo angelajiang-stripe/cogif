@@ -34,6 +34,9 @@ export default function AuthPage() {
       </div>
       <style jsx>{`
           .container {width: 40%; margin: 0 auto;}
+          @media screen and (max-width: 900px){
+            .container {width: 100%;}
+          }
       `}</style>
     </Layout>
   )
