@@ -27,13 +27,19 @@ export default function Onboarding(props:Props) {
     return (
         <div className="container">
             <div className="content">
-                <div className="pd-bottom-1">
+                <div>
                     <h4>CoGif Payments 💳</h4>
                     <p>CoGif takes a 5% transaction fee.</p>
-                    <p className="secondary-text">Once you submit onboarding, it may take a few minutes to be fully enabled.</p>
-                    <p>{data?.charges_enabled ? '✅' : '⛔'} accept payments</p>
+                    {data?.charges_enabled ? 
+                        <p>✅ accept payments</p> 
+                    : 
+                        <div className="pd-bottom-1">
+                            <p className="secondary-text">Once you submit onboarding, it may take a few minutes to be fully enabled.</p>
+                            <p>⛔ accept payments</p>
+                            <button onClick={handleClick} className="btn-secondary">Enable Payments</button>
+                        </div>
+                    }
                 </div>
-                <button onClick={handleClick} className="btn-secondary">Enable Payments</button>
             </div>
             <style jsx>{`
                 .container {border: 1px solid lightgrey; background-color: white; border-radius: 10px;}    

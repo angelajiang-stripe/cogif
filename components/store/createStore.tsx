@@ -73,8 +73,8 @@ const CreateStore = () => {
                 </div>
             </form>
             <style jsx>{`
-                .container {margin: 0 auto; width: 60%;}    
-                .inputBox {display: flex; justify-content: space-between; width: 40%; margin: 16px 0; align-items: center;}
+                .container {margin: 0 auto; width: 80%;}    
+                .inputBox {display: flex; justify-content: space-between; width: 60%; margin: 16px 0; align-items: center;}
                 .inputBox input {width: 60%;}
             `}</style>
         </div>

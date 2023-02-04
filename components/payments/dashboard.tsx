@@ -1,5 +1,4 @@
 import ConnectWrapper from "@/components/wrappers/connectWrapper";
-import { useState } from "react";
 
 import * as React from 'react';
 declare global {
@@ -18,7 +17,6 @@ type Props = {
 }
 
 export function Payouts(props:Props) {
-    const [color, setColor] = useState('#FFFFFF')
 
     return (
         <div className="pd-top-1">

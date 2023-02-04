@@ -108,8 +108,8 @@ export default function CreateProduct(){
             </div>
                 
             <style jsx>{`
-                .container {margin: 0 auto; width: 60%;}    
-                .inputBox {display: flex; justify-content: space-between; width: 50%; margin: 16px 0; align-items: center;}
+                .container {margin: 0 auto; width: 80%;}    
+                .inputBox {display: flex; justify-content: space-between; width: 60%; margin: 16px 0; align-items: center;}
                 .inputBox input {width: 60%;}
                 .imageContainer {padding: 16px 32px;}
             `}</style>

@@ -45,7 +45,7 @@ export default function Page({data}:{data: Stores}){
                 </div>
               </div>
               
-              <Tabs>
+              <Tabs forceRenderTabPanel={true}>
                 <TabList>
                   <Tab>Products</Tab>
                   <Tab>Transactions</Tab>

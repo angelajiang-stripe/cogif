@@ -52,7 +52,6 @@ const CheckoutCard = (props:Props) => {
 
     return (
         <div className='gifcard'>
-            
                 <form onSubmit={handleCheckout}>
                     <div className='content'>
                         <h3>{props.product.name}</h3>
@@ -72,7 +71,7 @@ const CheckoutCard = (props:Props) => {
                 </form>
                 
             <style jsx>{`
-                .gifcard {width: 20%; border-radius: 10px; border: 1px solid lightgrey; margin: 16px;}
+                .gifcard {width: 25%; border-radius: 10px; border: 1px solid lightgrey; margin: 16px;}
                 .content {padding: 16px 24px; text-align: center;}
                 .checkout-btn {
                     width: 100%; 

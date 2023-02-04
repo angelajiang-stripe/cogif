@@ -28,7 +28,7 @@ const RetrieveStores = (props:Props) => {
                 )})}
             </div>
             <style jsx>{`
-                .container {margin: 0 auto; width: 60%}
+                .container {margin: 0 auto; width: 80%}
                 .col1 {width: 70%;}
                 .col2 {width: 30%; align-items: center; justify-content: flex-end;}
             `}</style>
