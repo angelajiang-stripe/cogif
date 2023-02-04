@@ -71,18 +71,13 @@ const CheckoutCard = (props:Props) => {
                 </form>
                 
             <style jsx>{`
-                .gifcard {width: 25%; border-radius: 10px; border: 1px solid lightgrey; margin: 16px;}
+                .gifcard {width: 25%; border: 1px solid lightgrey; margin: 16px;}
                 .content {padding: 16px 24px; text-align: center;}
                 .checkout-btn {
                     width: 100%; 
                     padding: 16px 0;  
                     background-color: ${colors.primary}; 
-                    border-bottom-left-radius: 10px; 
-                    border-bottom-right-radius: 10px;
-                    border-top: none;
-                    border-bottom: 1px solid lightgrey;
-                    border-left: 1px solid lightgrey;
-                    border-right: 1px solid lightgrey;
+                    border: none;
                     cursor: pointer;
                 }
                 @media screen and (max-width: 900px){

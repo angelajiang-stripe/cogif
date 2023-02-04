@@ -18,6 +18,7 @@ body {
 a {color: black; text-decoration: none; font-weight: 600;}
 a:hover {color: colors.$primary-dark; cursor: pointer;}
 input {border: 1px solid lightgrey; border-radius: 5px; padding: 6px 8px;}
+input[type="text"] {font-size: 16px;}
 
 //classes
 .btn-primary {border-radius: 5px; color: black; background-color: colors.$primary; border: none; padding: 12px 16px; font-weight: 800;}
