@@ -36,8 +36,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     return;
   }
 
-  // Create Supabase Client
-  const supabase = createServerSupabaseClient({ req, res })
+  // Create Supabase Client using service key to buy pass RLS
+  const supabase = createServerSupabaseClient({ req, res }, {supabaseUrl: process.env.NEXT_PUBLIC_SUPABASE_URL, supabaseKey: process.env.SUPABASE_SERVICE_KEY})
 
   // Handle the event
   switch (event.type) {
@@ -45,7 +45,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       const checkoutSessionCompleted = event.data.object;
       const metadata = checkoutSessionCompleted.metadata
 
-      //RLS is public
+      //RLS bypassed by service key
       const { error } = await supabase.from('orders').insert({ product_id: metadata.product_id, user_id: metadata.user_id, store_id: metadata.store_id })
       if(error){
         console.error(error)
